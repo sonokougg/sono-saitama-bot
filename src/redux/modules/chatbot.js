@@ -10,11 +10,11 @@ export const sendText = (text) => {
 }
 
 const initialState = [{
-	iconUrl: '../images/saitama.gif',
-	contents: 'はやくやれよ'
+	iconUrl: 'http://onepunchman-anime.net/news/wp-content/uploads/2015/10/220f295df7ee3ed100bf0f646cbe4c3a.gif',
+	contents: 'ヒーローをやっているものだ。'
 }, {
-	iconUrl: '../images/saitama.gif',
-	contents: 'you can warp!!!'
+	iconUrl: 'http://onepunchman-anime.net/news/wp-content/uploads/2015/10/220f295df7ee3ed100bf0f646cbe4c3a.gif',
+	contents: 'さいたまだ。'
 }];
 
 const chatbotReducer = (state = initialState, action) => {

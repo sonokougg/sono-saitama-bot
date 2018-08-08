@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {Icon, Contents} from '.';
+import Icon from "./icon";
+import Contents from "./contents";
 
 class Message extends Component {
   static propTypes = {
