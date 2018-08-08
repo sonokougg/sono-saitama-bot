@@ -1,5 +1,28 @@
 .App {
-  text-align: center;
+  text-align: left;
+}
+
+.saitama {
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+  border-radius: 50%;
+}
+
+.comment {
+  border: 3px solid #333333;
+  border-radius: 5px;
+  width: 160px;
+  margin-left: 60px;
+  margin-top: -45px;
+}
+
+.comment-right {
+  text-align: left;
+  border: 3px solid #333333;
+  border-radius: 5px;
+  width: 160px;
+  margin-left: 150px;
 }
 
 .App-input {
@@ -12,7 +35,7 @@
 }
 
 .input {
-  width: 300px;
+  width: 260px;
   border: 3px solid #333333;
   border-radius: 5px;
 }
