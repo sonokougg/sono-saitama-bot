@@ -8,6 +8,13 @@ export const sendText = (text) => {
     payload: text
   };
 }
+export const SEND_BOT = 'SEND_BOT';
+export const sendBot = (botText) => {
+  return {
+    type: SEND_BOT,
+    payload: botText
+  };
+}
 
 const initialState = [{
 	iconUrl: 'http://onepunchman-anime.net/news/wp-content/uploads/2015/10/220f295df7ee3ed100bf0f646cbe4c3a.gif',
@@ -26,6 +33,12 @@ const chatbotReducer = (state = initialState, action) => {
       contents: action.payload
     }];
   }
+  case SEND_BOT: {
+  return [...state, {
+    iconUrl: 'http://onepunchman-anime.net/news/wp-content/uploads/2015/10/220f295df7ee3ed100bf0f646cbe4c3a.gif',
+    contents: '正義執行'
+  }];
+}
     default:
       return state;
   }

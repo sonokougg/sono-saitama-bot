@@ -5,12 +5,14 @@ import '../styles/App.css';
 import Message from './message';
 import {
   sendText as _sendText,
+  sendBot as _sendBot,
 } from '../redux/modules/chatbot';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
+    const { sendText, sendBot } = props;
     this.state = {
       inputText: '',
     };
@@ -20,6 +22,14 @@ class App extends Component {
         inputText: e.target.value,
       });
     };
+
+    this.pressSend = () => {
+      const { inputText } = this.state;
+      if (inputText.length != 0) {
+        sendText(inputText);
+        this.setState({inputText: ''});
+      }
+    }
   }
 
 
@@ -31,7 +41,7 @@ class App extends Component {
         {chatbot.map((m, i) => <Message key={`msg-${i}`} {...m}/>)}
         <div className="App-input">
           <input type="input" value={inputText} onChange={e => this.handleChange(e)} className="input"/>
-          <button onClick={() => sendText(inputText)} type="button" className="send">send</button>
+          <button onClick={this.pressSend} type="button" className="send">send</button>
         </div>
       </div>
     );
@@ -54,6 +64,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   sendText: (text) => dispatch(_sendText(text)),
+  sendBot: (text) => dispatch(_sendBot(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
