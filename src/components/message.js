@@ -1,23 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import Icon from "./icon";
-import Contents from "./contents";
+import Icon from './icon';
+import Contents from './contents';
 
-class Message extends Component {
-  static propTypes = {
-    contents: PropTypes.string.isRequired,
-    iconUrl: PropTypes.string.isRequired,
-  };
-  render() {
-    const { contents, iconUrl } = this.props;
-    return(
-      <div className="message-container">
-        <Icon url={iconUrl} />
-        <Contents contents={contents} />
-      </div>
-    );
-  }
-}
+
+const Message = ({ iconUrl, contents }) => (
+  <div className="message-container">
+    <Icon url={iconUrl} />
+    <Contents contents={contents} />
+  </div>
+);
+
+Message.propTypes = {
+  contents: PropTypes.string.isRequired,
+  iconUrl: PropTypes.string.isRequired,
+};
 
 export default Message;

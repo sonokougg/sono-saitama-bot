@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux';
-
 import chatbot from './chatbot';
+import bot from './bot';
 
-export default combineReducers({
-  chatbot
-});
+const reducers = {
+  chatbot,
+  bot,
+};
+
+export default reducers;
