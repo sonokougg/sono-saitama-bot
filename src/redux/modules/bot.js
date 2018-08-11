@@ -1,5 +1,5 @@
-const LOADING = 'bot/LOADING';
-const LOADED = 'bot/LOADED';
+export const LOADING = 'bot/LOADING';
+export const LOADED = 'bot/LOADED';
 
 const InitialState = {
   loading: false,
