@@ -7,13 +7,11 @@ export const sendText = text => ({
   payload: text,
 });
 
-export const sendTextFromSaitama = (content) => {
-  return {
-      type: SEND_TEXT,
-      saitama: true,
-      payload: content
-  }
-};
+export const sendTextFromSaitama = content => ({
+  type: SEND_TEXT,
+  saitama: true,
+  payload: content,
+});
 
 const initialState = [{
   iconUrl: saitama,
