@@ -1,7 +1,8 @@
 export const SEND_TEXT = 'chatbot/SEND_TEXT';
+export const SEND_GURU = 'chatbot/SEND_GURU';
 const SaitamaIconUrl = 'http://onepunchman-anime.net/news/wp-content/uploads/2015/10/220f295df7ee3ed100bf0f646cbe4c3a.gif';
 const SonodaIconUrl = 'https://avatars1.githubusercontent.com/u/11702423?s=460&v=4';
-
+const GuruIconUrl = 'https://horol.org/zigen.jpg';
 export const sendText = text => ({
   type: SEND_TEXT,
   payload: text,
@@ -12,6 +13,11 @@ export const sendTextFromSaitama = content => ({
   saitama: true,
   payload: content,
 });
+
+export const sendTextFromGuru = content => ({
+  type: SEND_GURU,
+  payload: content,
+})
 
 const initialState = [{
   iconUrl: SaitamaIconUrl,
@@ -28,6 +34,13 @@ const chatbotReducer = (state = initialState, action) => {
     case SEND_TEXT: {
       return [...state, {
         iconUrl: !action.saitama ? SonodaIconUrl : SaitamaIconUrl,
+        contents: action.payload,
+        id: state.length + 1,
+      }];
+    }
+    case SEND_GURU: {
+      return [...state, {
+        iconUrl: GuruIconUrl,
         contents: action.payload,
         id: state.length + 1,
       }];
