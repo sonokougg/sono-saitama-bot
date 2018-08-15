@@ -1,7 +1,7 @@
 import { sendTextFromSaitama, SEND_TEXT } from '../modules/chatbot';
 import { LOADING, LOADED } from '../modules/bot';
 
-const saitamaWords = ['正義執行',
+const SaitamaWords = ['正義執行',
   '続けることが大事だ',
   '俺はヒーローがやりたいからやってんだ',
   '腹筋１００回、腕立て伏せ１００回、ランニング１０km、これを毎日やる！'];
@@ -15,7 +15,7 @@ const botMiddleware = store => next => (action) => {
       store.dispatch({ type: LOADING });
       setTimeout(() => {
         store.dispatch(
-          sendTextFromSaitama(saitamaWords[Math.floor(Math.random() * saitamaWords.length)]),
+          sendTextFromSaitama(SaitamaWords[Math.floor(Math.random() * SaitamaWords.length)]),
         );
         store.dispatch({ type: LOADED });
       }, 4000);
@@ -28,13 +28,6 @@ const botMiddleware = store => next => (action) => {
       }, 4000);
     }
 
-    if (action.payload === 'ラムダ') {
-      store.dispatch({ type: LOADING });
-      setTimeout(() => {
-        store.dispatch(sendTextFromSaitama('は？'));
-        store.dispatch({ type: LOADED });
-      }, 4000);
-    }
   }
   next(action);
 };
