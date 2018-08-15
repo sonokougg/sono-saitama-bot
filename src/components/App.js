@@ -11,6 +11,7 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+    const { sendText } = props;
     this.state = {
       inputText: '',
     };
@@ -20,18 +21,41 @@ class App extends Component {
         inputText: e.target.value,
       });
     };
+
+    this.pressSend = () => {
+      const { inputText } = this.state;
+      if (inputText.length !== 0) {
+        sendText(inputText);
+        this.setState({ inputText: '' });
+      }
+    };
   }
 
 
   render() {
-    const { text, sendText, chatbot } = this.props;
+    const { loading, chatbot } = this.props;
     const { inputText } = this.state;
     return (
       <div className="App">
-        {chatbot.map((m, i) => <Message key={`msg-${i}`} {...m}/>)}
+        {chatbot.map(m => <Message {...m} />)}
+        {loading && (
+        <div className="typing">
+          <span>
+          ・
+          </span>
+          <span>
+          ・
+          </span>
+          <span>
+          ・
+          </span>
+        </div>
+        )}
         <div className="App-input">
-          <input type="input" value={inputText} onChange={e => this.handleChange(e)} className="input"/>
-          <button onClick={() => sendText(inputText)} type="button" className="send">send</button>
+          <input type="input" value={inputText} onChange={e => this.handleChange(e)} className="input" />
+          <button onClick={this.pressSend} type="button" className="send">
+            send
+          </button>
         </div>
       </div>
     );
@@ -39,21 +63,18 @@ class App extends Component {
 }
 
 App.propTypes = {
-  text: PropTypes.number.isRequired,
   sendText: PropTypes.func.isRequired,
-  chatbot: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  chatbot: PropTypes.arrayOf.isRequired,
 };
 
-const mapStateToProps = state => {
-  const { text } = state.chatbot;
-  return {
-    text,
-    chatbot: state.chatbot,
-  };
-};
+const mapStateToProps = state => ({
+  chatbot: state.chatbot,
+  loading: state.bot.loading,
+});
 
 const mapDispatchToProps = dispatch => ({
-  sendText: (text) => dispatch(_sendText(text)),
+  sendText: text => dispatch(_sendText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

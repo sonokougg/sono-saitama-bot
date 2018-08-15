@@ -1,16 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Icon extends Component {
-  static propTypes = {
-    url: PropTypes.string.isRequired
-  };
-	render() {
-    const { url } = this.props;
-		return (<div className="icon-container">
-			<img className="icon" src={url}/>
-		</div>);
-	}
-}
+const Icon = ({ url }) => (
+  <div className="icon-container">
+    <img className="icon" src={url} alt="icon" />
+  </div>
+);
+Icon.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 
 export default Icon;
